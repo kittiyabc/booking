@@ -24,9 +24,9 @@ $equip = implode(',', $_POST['equip']);
 if($_FILES["img_event"]["name"] != "")
         {			
 			$fileimg = basename($_FILES["img_event"]["name"]);
-        	move_uploaded_file($_FILES["img_event"]["tmp_name"],"../images/".$fileimg);
+        	
         }
-		
+
 $meSQL = "INSERT INTO tb_event (id_member,rooms,title,start,end,color,people,equipment,member,etc,img_event) VALUES ('".$_POST['memberid']."','".$_POST['idrooms']."','".$_POST['title']."','".$startdate."','".$enddate."','".$meResult['color_rooms']."','".$_POST['people']."','".$equip."','".$_POST['member']."','".$_POST['etc']."','".$fileimg."')";
 		$meQuery = $conn->query($meSQL);		
 		
