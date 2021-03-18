@@ -350,6 +350,14 @@ while ($rs = $meQuery->fetch_assoc()){
                                             placeholder=""><?php echo $meResult2['etc'];?></textarea>
                                     </div>
                                 </div>
+                                <center><img src="booking/10.png" alt="Paris" style="width:50%;"></center>
+                                <br>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right"
+                                        for="img_event">รูปภาพ</label>
+                                    <input type="file" name="img_event" id="img_event" OnChange="showPreview(this)"
+                                        accept="images/*" value="<?php echo $meResult['img_event'];?>">
+                                </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right" for="status" required> สถานะ
                                     </label>
