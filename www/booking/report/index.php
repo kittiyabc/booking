@@ -140,26 +140,16 @@ while ($rs = $meQuery->fetch_assoc()){
                                             <?php $dateData=$rs['end']; echo thai_date_and_time(strtotime($dateData)); ?>
                                         </td>
                                         <td>
-                                            <span type="button" class="label label-sm label-pink" data-toggle="modal"
-                                                data-target="#smallmodal">
-                                                สลิปโอน
-                                            </span>
-                                            <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog"
-                                                aria-labelledby="smallmodalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modenal-sm" role="documt">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h3>
-                                                                หลักฐานการชำระเงิน</h3>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <br>
-                                                        <img src="./images/<?php echo $rs['img_event'];?>"
-                                                            style="width:500px;height:500px;">
-                                                    </div>
+                                            <img src="./images/<?php echo $rs['img_event'];?>"
+                                                style="width:50px;height:50px;"
+                                                onclick="document.getElementById('modal01').style.display='block'">
+
+                                            <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+                                                <span
+                                                    class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+                                                <div class="w3-modal-content w3-animate-zoom">
+                                                    <img src="./images/<?php echo $rs['img_event'];?>"
+                                                        style="width:100%">
                                                 </div>
                                             </div>
                                         </td>
@@ -359,14 +349,6 @@ while ($rs = $meQuery->fetch_assoc()){
                                         <textarea class="form-control" id="etc" name="etc"
                                             placeholder=""><?php echo $meResult2['etc'];?></textarea>
                                     </div>
-                                </div>
-                                <center><img src="booking/10.png" alt="Paris" style="width:50%;"></center>
-                                <br>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right"
-                                        for="img_event">รูปภาพ</label>
-                                    <input type="file" name="img_event" id="img_event" OnChange="showPreview(this)"
-                                        accept="images/*" value="<?php echo $meResult['img_event'];?>">
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right" for="status" required> สถานะ

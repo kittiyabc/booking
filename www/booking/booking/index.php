@@ -71,10 +71,7 @@ header ("Last-Modified: " . gmdate ("D, d M Y H:i:s") . " GMT");
                                 <button type="button" class="close" data-dismiss="modal"><span
                                         aria-hidden="true">×</span> <span class="sr-only">close</span></button>
                                 <h3>รายการจองคิว</h4>
-                            </div>
-                            <div id="modalTitle" class="modal-body" style="font-size: 16px;"></div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
