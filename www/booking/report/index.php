@@ -74,7 +74,32 @@ $rs2 = $conn->query($sql2)->fetch_assoc(); echo $rs2['count1']; ?> รายก�
 $rs2 = $conn->query($sql2)->fetch_assoc(); echo $rs2['count2']; ?> รายการ</span>
                                 <span class="btn btn-info"><i class="fa fa-group"></i>&nbsp;สมาชิก
                                     <?php $sql2 = "SELECT COUNT(id_member) AS count3 FROM tb_member ";
-$rs2 = $conn->query($sql2)->fetch_assoc(); echo $rs2['count3']; ?> คน</span>
+$rs2 = $conn->query($sql2)->fetch_assoc(); echo $rs2['count3']; ?> คน
+                                </span>
+                                <br>
+
+                                <div class="mt-3" style="margin-top: 25px;">
+                                    <span class="btn btn-yellow">&nbsp;รวมรายได้การจอง
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_incomeAll FROM tb_event e WHERE e.status=1";
+$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_incomeAll']); ?> บาท
+                                    </span>
+
+                                    <span class="btn btn-teal">&nbsp;รายได้บริการทำเล็บ
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_1 FROM tb_event e WHERE e.status=1 AND e.rooms=1";
+$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_income_1']); ?> บาท
+                                    </span>
+
+                                    <span class="btn btn-danger">&nbsp;รายได้บริการต่อขนตา
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_2 FROM tb_event e WHERE e.status=1 AND e.rooms=2";
+$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_income_2']); ?> บาท
+                                    </span>
+
+                                    <span class="btn btn-info">&nbsp;รายได้บริการสักคิ้ว
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_3 FROM tb_event e WHERE e.status=1 AND e.rooms=3";
+$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_income_3']); ?> บาท
+                                    </span>
+                                </div>
+
                             </div>
                         </div>
                         <div class="space"></div>
