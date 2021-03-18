@@ -58,7 +58,7 @@ if($_FILES["img_event"]["name"] != "")
 			        		//*** Delete Old File ***//
         	@unlink("../images/".$_POST["FilehdnOld"]);
 			$fileimg = basename($_FILES["img_event"]["name"]);	
-        	move_uploaded_file($_FILES["img_event"]["tmp_name"],"../images/".$fileimg);     	
+			  	
         }
 		else{
 			$filename = $_POST['FilehdnOld'];
