@@ -19,7 +19,7 @@ $endstrYear = date('Y',strtotime($_POST['enddate']))-543;
 $endstrMonth= date('m',strtotime($_POST['enddate']));
 $endstrDay= date('d',strtotime($_POST['enddate']));
 $enddate = $endstrYear.'-'.$endstrMonth.'-'.$endstrDay.'T'.$_POST['endtime'].':00';
-$equip = implode(',', $_POST['equip']);
+
 if($_FILES["img_event"]["name"] != "")
         {
 			        		//*** Delete Old File ***//
@@ -31,6 +31,7 @@ if($_FILES["img_event"]["name"] != "")
 			$filename = $_POST['FilehdnOld'];
 		}
 $meSQL = "UPDATE tb_event ";
+$equip = implode(',', $_POST['equip']);
 $meSQL .="SET rooms='{$_POST['idrooms']}',"
 . "title='{$_POST['title']}',"
 . "start='{$startdate}',"
