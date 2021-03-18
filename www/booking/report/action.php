@@ -20,6 +20,16 @@ $endstrMonth= date('m',strtotime($_POST['enddate']));
 $endstrDay= date('d',strtotime($_POST['enddate']));
 $enddate = $endstrYear.'-'.$endstrMonth.'-'.$endstrDay.'T'.$_POST['endtime'].':00';
 $equip = implode(',', $_POST['equip']);
+if($_FILES["img_event"]["name"] != "")
+        {
+			        		//*** Delete Old File ***//
+        	@unlink("../images/".$_POST["FilehdnOld"]);
+			$fileimg = basename($_FILES["img_event"]["name"]);	
+        	move_uploaded_file($_FILES["img_event"]["tmp_name"],"../images/".$fileimg);     	
+        }
+		else{
+			$filename = $_POST['FilehdnOld'];
+		}
 $meSQL = "UPDATE tb_event ";
 $meSQL .="SET rooms='{$_POST['idrooms']}',"
 . "title='{$_POST['title']}',"

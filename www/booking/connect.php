@@ -1,8 +1,8 @@
 <?php
 // $conn = mysqli_connect("localhost", "root", "", "room");
-// $conn = mysqli_connect("localhost", "root", "", "room");
+$conn = mysqli_connect("localhost", "root", "", "room");
 
-$conn = mysqli_connect('db', 'root', '12345678', "room");
+// $conn = mysqli_connect('db', 'root', '12345678', "room");
 
 mysqli_set_charset($conn, 'utf8');
 if (!$conn) {
