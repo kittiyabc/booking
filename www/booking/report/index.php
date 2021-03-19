@@ -247,7 +247,8 @@ while ($rs = $meQuery->fetch_assoc()){
  ?>
                                             <option value="<?php echo $meResult['id_rooms'];?>"
                                                 <?php if ($meResult['id_rooms'] == $meResult2['rooms']) {echo 'selected';}?>>
-                                                <?php echo $meResult['name_rooms'];?></option>
+                                                <?php echo $meResult['name_rooms'].'  '.$meResult['people_rooms'];?>;?>
+                                            </option>
                                             <?php } ?>
                                         </select>
                                     </div>
