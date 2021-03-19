@@ -30,7 +30,7 @@ $meSQL = "INSERT INTO tb_event (id_member,rooms,title,start,end,color,people,equ
 		$meQuery = $conn->query($meSQL);		
 		
 		if ($meQuery == TRUE) {
-			echo "<script>alert('เพิ่มข้อมูลเสร็จเรียบร้อยแล้ว'); window.location ='../index.php?page=mybooking';</script>";
+			echo "<script>alert('เพิ่มข้อมูลเสร็จเรียบร้อยแล้ว <br>เมื่อถึงเวลาที่จองคิว เกินเวลา 15นาที พนักงาานจะทำการยกเลิกการจองนั้นทันที และไม่สามารถคืนเงินได้'); window.location ='../index.php?page=mybooking';</script>";
         } else {
 			echo "<script>alert('มีปัญหาการบันทึกข้อมูล กรุณากลับไปบันทึกใหม่');history.back(-1);</script>";
 			exit();
@@ -76,7 +76,7 @@ $meSQL .= "WHERE id ='{$_POST['id']}' ";
 
 $meQuery = $conn->query($meSQL);			
 	if ($meQuery == TRUE) {
-		echo "<script>alert('บันทึกข้อมูลเรียบร้อยแล้ว <br> ');window.location ='../index.php?page=mybooking'; </script>";
+		echo "<script>alert('บันทึกข้อมูลเรียบร้อยแล้ว  ');window.location ='../index.php?page=mybooking'; </script>";
         } else {
 		echo "<script>alert('มีปัญหาการบันทึกข้อมูล กรุณากลับไปบันทึกใหม่');history.back(-1);</script>";
 		exit();

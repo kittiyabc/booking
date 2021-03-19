@@ -118,10 +118,11 @@ header ("Last-Modified: " . gmdate ("D, d M Y H:i:s") . " GMT");
 
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right"
-                                                for="title">รายละเอียดเพิ่มเติมในการจอง </label>
+                                                for="title">รายละเอียด </label>
                                             <div class="col-sm-9">
                                                 <input type="text" name="title" id="title" placeholder=""
-                                                    class="col-xs-10 col-sm-5" value="" />
+                                                    class="col-xs-10 col-sm-5" value="(กรณีที่ลูกค้าต้องการเพิ่มเติม เช่น บริการทำเล็บ
+                                                ต้องการติดสติ๊กเกอร์ เพ้นท์เล็บ)" />
                                             </div>
                                         </div>
                                         <div class="form-group">
