@@ -125,20 +125,14 @@ header ("Last-Modified: " . gmdate ("D, d M Y H:i:s") . " GMT");
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label no-padding-right" for="people"
-                                                required> ราคาจอง
-                                            </label>
+                                            <label class="col-sm-3 control-label no-padding-right">ราคาจอง</label>
                                             <div class="col-sm-9">
-                                                <select name="people" id="people">
-                                                    <?php 
- $meSQL = "SELECT * FROM tb_rooms ORDER BY people_rooms asc";
- $meQuery = $conn->query($meSQL);
- while ($meResult = $meQuery->fetch_assoc()){
- ?>
-                                                    <option value="<?php echo $meResult['people_rooms'];?>">
-                                                        <?php echo $meResult['people_rooms'];?></option>
-                                                    <?php } ?>
-                                                </select>
+                                                <input type="text" name="roomshow" placeholder=""
+                                                    class="col-xs-10 col-sm-5"
+                                                    value="<?php echo $rs['	name_rooms'].'  '.$rs['people_rooms'];?>"
+                                                    disabled />
+                                                <input type="hidden" name="id_rooms"
+                                                    value="<?php echo $rs['	name_rooms'].'  '.$rs['people_rooms'];?>" />
                                             </div>
                                         </div>
                                         <h5 align='center'>
