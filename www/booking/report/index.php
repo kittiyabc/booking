@@ -266,8 +266,7 @@ while ($rs = $meQuery->fetch_assoc()){
                                     <div class="col-sm-9">
                                         <input type="text" name="title" id="title"
                                             placeholder="(กรณีที่ลูกค้าต้องการเพิ่มเติม เช่น บริการทำเล็บต้องการติดสติ๊กเกอร์ เพ้นท์เล็บ)"
-                                            class=" col-xs-10 col-sm-5" value="<?php echo $meResult2['title'];?>"
-                                            required />
+                                            class=" col-xs-10 col-sm-5" value="<?php echo $meResult2['title'];?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
