@@ -118,26 +118,34 @@ header ("Last-Modified: " . gmdate ("D, d M Y H:i:s") . " GMT");
 
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right"
-                                                for="title">รายการที่จะทำการจอง</label>
+                                                for="title">รายละเอียดเพิ่มเติมในการจอง </label>
                                             <div class="col-sm-9">
                                                 <input type="text" name="title" id="title" placeholder=""
-                                                    class="col-xs-10 col-sm-5" value="" required />
+                                                    class="col-xs-10 col-sm-5" value="" />
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label no-padding-right">ราคาจอง</label>
+                                            <label class="col-sm-3 control-label no-padding-right" for="people"
+                                                required> ราคาจอง
+                                            </label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="roomshow" placeholder=""
-                                                    class="col-xs-10 col-sm-5"
-                                                    value="<?php echo $rs['	name_rooms'].'  '.$rs['people_rooms'];?>"
-                                                    disabled />
-                                                <input type="hidden" name="id_rooms"
-                                                    value="<?php echo $rs['	name_rooms'].'  '.$rs['people_rooms'];?>" />
+                                                <select name="people" id="people">
+                                                    <?php 
+ $meSQL = "SELECT * FROM tb_rooms ORDER BY people_rooms asc";
+ $meQuery = $conn->query($meSQL);
+ while ($meResult = $meQuery->fetch_assoc()){
+ ?>
+                                                    <option
+                                                        value="<?php echo $meResult['name_rooms'].'  '.$meResult['people_rooms'];?>">
+                                                        <?php echo $meResult['name_rooms'].'  '.$meResult['people_rooms'];?>
+                                                    </option>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
                                         </div>
                                         <h5 align='center'>
                                             ลูกค้าสามารถเลือกเวลาในการจองคิว
-                                            รายการล่ะ 2 ชั่วโมง
+                                            รายการละ 2 ชั่วโมง
                                             สามารถเช็คเวลาที่ว่างได้ตามปฎิทินการจองของร้านค่ะ</h5>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right"
