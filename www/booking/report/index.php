@@ -262,10 +262,11 @@ while ($rs = $meQuery->fetch_assoc()){
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right"
-                                        for="title">รายการที่จะทำการจอง</label>
+                                        for="title">รายละเอียด</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="title" id="title" placeholder=""
-                                            class="col-xs-10 col-sm-5" value="<?php echo $meResult2['title'];?>"
+                                        <input type="text" name="title" id="title"
+                                            placeholder="(กรณีที่ลูกค้าต้องการเพิ่มเติม เช่น บริการทำเล็บต้องการติดสติ๊กเกอร์ เพ้นท์เล็บ)"
+                                            class=" col-xs-10 col-sm-5" value="<?php echo $meResult2['title'];?>"
                                             required />
                                     </div>
                                 </div>

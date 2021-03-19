@@ -71,7 +71,7 @@ $meSQL .="SET rooms='{$_POST['idrooms']}',"
 . "people='{$_POST['people']}',"
 . "equipment='{$equip}',"
 . "etc='{$_POST['etc']}' "
-. "img_event='$fileimg',";
+. "img_event='{$_POST['img_event']}',";
 $meSQL .= "WHERE id ='{$_POST['id']}' ";
 
 $meQuery = $conn->query($meSQL);			
