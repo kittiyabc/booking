@@ -79,7 +79,7 @@ $rs = $conn->query( $sql )->fetch_assoc() ;
 <body class="no-skin">
     <div class="w3-container w3-metro-magenta">
         <div class="container-fluid">
-            <a class="navbar-header" href="index.html"> <img src="templates/2.png" alt="logo"> </a>
+            <a class="navbar-header" href="index.php"> <img src="templates/2.png" alt="logo"> </a>
 
             <nav role=" navigation" class="navbar-menu pull-left ">
                 <ul class="nav navbar-nav">
