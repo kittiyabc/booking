@@ -247,8 +247,7 @@ while ($rs = $meQuery->fetch_assoc()){
  ?>
                                             <option value="<?php echo $meResult['id_rooms'];?>"
                                                 <?php if ($meResult['id_rooms'] == $meResult2['rooms']) {echo 'selected';}?>>
-                                                <?php echo $meResult['name_rooms'].'  '.$meResult['people_rooms'];?>;?>
-                                            </option>
+                                                <?php echo $meResult['name_rooms'];?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -272,10 +271,19 @@ while ($rs = $meQuery->fetch_assoc()){
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right" for="people">ราคาจอง</label>
-                                    <div class="col-sm-2">
-                                        <input type="number" name="people" id="people" placeholder=""
-                                            class="col-xs-10 col-sm-5" value="<?php echo $meResult2['people'];?>"
-                                            required />
+                                    <div class="col-sm-9">
+                                        <select name="idrooms" id="idrooms">
+                                            <?php 
+ $meSQL = "SELECT * FROM tb_rooms ORDER BY id_rooms asc";
+ $meQuery = $conn->query($meSQL);
+ while ($meResult = $meQuery->fetch_assoc()){
+ ?>
+                                            <option value="<?php echo $meResult['id_rooms'];?>"
+                                                <?php if ($meResult['id_rooms'] == $meResult2['rooms']) {echo 'selected';}?>>
+                                                <?php echo $meResult['name_rooms'].'  '.$meResult['people_rooms'];?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
