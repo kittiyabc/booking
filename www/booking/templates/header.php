@@ -84,7 +84,7 @@ $rs = $conn->query( $sql )->fetch_assoc() ;
             <nav role=" navigation" class="navbar-menu pull-left ">
                 <ul class="nav navbar-nav">
                     <li class="<?php if ($_GET['page']=='booking'){echo 'active';}?>">
-                        <a href="index.html">
+                        <a href="index.php">
                             Home
                         </a>
                     </li>
