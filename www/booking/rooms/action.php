@@ -11,8 +11,8 @@ if ($_GET['action']=='add'){
 	if($_FILES["Upload"]["name"] != "")
         {			
 			$filename = basename($_FILES["Upload"]["name"]);
-			
-		}
+        	move_uploaded_file($_FILES["Upload"]["tmp_name"],"../images/".$filename);
+        }
 		$meSQL = "INSERT INTO tb_rooms (image_rooms,name_rooms,people_rooms,detail_rooms,color_rooms) VALUES ('".$filename."','".$_POST["Name"]."','".$_POST["People"]."','".$_POST["Detail"]."','".$_POST["Color"]."')";
 		$meQuery = $conn->query($meSQL);		
 		

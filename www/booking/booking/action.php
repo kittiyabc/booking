@@ -24,9 +24,8 @@ $equip = implode(',', $_POST['equip']);
 if($_FILES["img_event"]["name"] != "")
         {			
 			$fileimg = basename($_FILES["img_event"]["name"]);
-        	
+        	move_uploaded_file($_FILES["img_event"]["tmp_name"],"../images/".$fileimg);
         }
-
 $meSQL = "INSERT INTO tb_event (id_member,rooms,title,start,end,color,people,equipment,member,etc,img_event) VALUES ('".$_POST['memberid']."','".$_POST['idrooms']."','".$_POST['title']."','".$startdate."','".$enddate."','".$meResult['color_rooms']."','".$_POST['people']."','".$equip."','".$_POST['member']."','".$_POST['etc']."','".$fileimg."')";
 		$meQuery = $conn->query($meSQL);		
 		
@@ -58,7 +57,7 @@ if($_FILES["img_event"]["name"] != "")
 			        		//*** Delete Old File ***//
         	@unlink("../images/".$_POST["FilehdnOld"]);
 			$fileimg = basename($_FILES["img_event"]["name"]);	
-			  	
+        	move_uploaded_file($_FILES["img_event"]["tmp_name"],"../images/".$fileimg);     	
         }
 		else{
 			$filename = $_POST['FilehdnOld'];
@@ -77,7 +76,7 @@ $meSQL .= "WHERE id ='{$_POST['id']}' ";
 
 $meQuery = $conn->query($meSQL);			
 	if ($meQuery == TRUE) {
-		echo "<script>alert('บันทึกข้อมูลเรียบร้อยแล้ว');window.location ='../index.php?page=mybooking'; </script>";
+		echo "<script>alert('บันทึกข้อมูลเรียบร้อยแล้ว <br> ');window.location ='../index.php?page=mybooking'; </script>";
         } else {
 		echo "<script>alert('มีปัญหาการบันทึกข้อมูล กรุณากลับไปบันทึกใหม่');history.back(-1);</script>";
 		exit();
