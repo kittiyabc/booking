@@ -137,8 +137,8 @@ header ("Last-Modified: " . gmdate ("D, d M Y H:i:s") . " GMT");
  while ($meResult = $meQuery->fetch_assoc()){
  ?>
                                                     <option
-                                                        value="<?php echo $meResult['name_rooms'].'  '.$meResult['people_rooms'];?>">
-                                                        <?php echo $meResult['name_rooms'].'  '.$meResult['people_rooms'];?>
+                                                        value="<?php echo $rs['name_rooms'].'  '.$meResult['people_rooms'];?>">
+                                                        <?php echo $rs['name_rooms'].'  '.$meResult['people_rooms'];?>
                                                     </option>
                                                     <?php } ?>
                                                 </select>

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$title = 'การแจ้งเตือน'; //กำหนดไตเติ้ล
+$title = 'รายการจองคิว'; //กำหนดไตเติ้ล
 include 'templates/header.php';
 if ($_SESSION['status'] =='admin')  
 {
@@ -16,7 +16,7 @@ include 'function.php';
             <i class="ace-icon fa fa-home home-icon"></i>
             <a href="index.php?page=home">Home</a>
         </li>
-        <li class="active">การแจ้งเตือน</li>
+        <li class="active">รายการจองคิว</li>
     </ul><!-- /.breadcrumb -->
 </div>
 <div class="main-container ace-save-state" id="main-container">
@@ -64,7 +64,33 @@ if (isset($_POST['substatus']))
 	$meQuery = $conn->query($meSQL);
 ?>
 
+                        <?php  
+                                $m_d;
+                                if(isset($_GET['date_sum'])){
+                                    $m_d=$_GET['date_sum'];
+                                }else{
+                                    $m_d=date("Y-m");
+                                }
+
+                            ?>
+
                         <div class="col-sm-12">
+
+                            <div class="form-group">
+                                <form action="./index.php?page=report" method="get">
+                                    <div class="form-group">
+                                        <label for="usr">ค้นหาจากเดือน:</label>
+                                        <input type="month" class="form-control" name="date_sum" value="<?=$m_d?>"
+                                            id="usr">
+                                        <input type="hidden" class="form-control" name="page" value="report" id="usr">
+                                        <input class="btn btn-sm btn-primary" type="submit"
+                                            name="submit_date" /></input>
+                                    </div>
+                                </form>
+                            </div>
+
+
+
                             <div class="center">
                                 <span class="btn btn-danger"><i class="fa fa-hourglass-2"></i>&nbsp;รออนุมัติ
                                     <?php $sql2 = "SELECT COUNT(id) AS count1 FROM tb_event WHERE status = 0 ";
@@ -80,22 +106,23 @@ $rs2 = $conn->query($sql2)->fetch_assoc(); echo $rs2['count3']; ?> คน
 
                                 <div class="mt-3" style="margin-top: 25px;">
                                     <span class="btn btn-yellow">&nbsp;รวมรายได้การจอง
-                                        <?php $sql2 = "SELECT SUM(e.people) sum_incomeAll FROM tb_event e WHERE e.status=1";
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_incomeAll FROM tb_event e 
+                                        WHERE e.start LIKE '%{$m_d}%' AND e.status=1";
 $rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_incomeAll']); ?> บาท
                                     </span>
 
                                     <span class="btn btn-teal">&nbsp;รายได้บริการทำเล็บ
-                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_1 FROM tb_event e WHERE e.status=1 AND e.rooms=1";
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_1 FROM tb_event e WHERE e.start LIKE '%{$m_d}%' AND e.status=1 AND e.rooms=1";
 $rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_income_1']); ?> บาท
                                     </span>
 
                                     <span class="btn btn-danger">&nbsp;รายได้บริการต่อขนตา
-                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_2 FROM tb_event e WHERE e.status=1 AND e.rooms=2";
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_2 FROM tb_event e WHERE e.start LIKE '%{$m_d}%' AND e.status=1 AND e.rooms=2";
 $rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_income_2']); ?> บาท
                                     </span>
 
                                     <span class="btn btn-info">&nbsp;รายได้บริการสักคิ้ว
-                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_3 FROM tb_event e WHERE e.status=1 AND e.rooms=3";
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_3 FROM tb_event e WHERE e.start LIKE '%{$m_d}%' AND e.status=1 AND e.rooms=3";
 $rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_income_3']); ?> บาท
                                     </span>
                                 </div>
@@ -120,6 +147,8 @@ $rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_income_3
                                         <th class="center">สิ้นสุดเวลา</th>
                                         <th class="center">หลักฐานการโอน</th>
                                         <th class="center">สถานะ</th>
+                                        <th class="center">สถานะหน้าร้าน</th>
+
                                         <th class="center">จัดการ</th>
                                     </tr>
                                 </thead>
@@ -155,6 +184,9 @@ while ($rs = $meQuery->fetch_assoc()){
                                         </td>
                                         <td class="center">
                                             <?php if ($rs['status']=='1'){echo '<span class="label label-sm label-info">','อนุมัติ','</span>';} else if ($rs['status']=='2'){echo '<span class="label label-sm label-danger">','ไม่อนุมัติ','</span>';} else if ($rs['status']=='3'){echo '<span class="label label-sm">','ยกเลิก','</span>';} else {echo '<span class="label label-sm label-warning">','รออนุมัติ','</span>';}?>
+                                        </td>
+                                        <td class="center">
+                                            <?php if ($rs['Waiting']=='1'){echo '<span class="label label-sm label-yellow">','รอ','</span>';} else if ($rs['Waiting']=='2'){echo '<span class="label label-sm label-danger">','ใช้บริการ','</span>';} else if ($rs['Waiting']=='3'){echo '<span class="label label-sm">','เสร็จสิ้น','</span>';} ?>
                                         </td>
                                         <td class="center">
                                             <div class="hidden-sm hidden-xs action-buttons">
@@ -271,19 +303,17 @@ while ($rs = $meQuery->fetch_assoc()){
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right" for="people">ราคาจอง</label>
+                                    <div class="col-sm-2">
+                                        <input type="number" name="people" id="people" placeholder=""
+                                            class="col-xs-10 col-sm-5" value="<?php echo $meResult2['people'];?>"
+                                            required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="title">ราคารวม</label>
                                     <div class="col-sm-9">
-                                        <select name="idrooms" id="idrooms">
-                                            <?php 
- $meSQL = "SELECT * FROM tb_rooms ORDER BY id_rooms asc";
- $meQuery = $conn->query($meSQL);
- while ($meResult = $meQuery->fetch_assoc()){
- ?>
-                                            <option value="<?php echo $meResult['id_rooms'];?>"
-                                                <?php if ($meResult['id_rooms'] == $meResult2['rooms']) {echo 'selected';}?>>
-                                                <?php echo $meResult['name_rooms'].'  '.$meResult['people_rooms'];?>
-                                            </option>
-                                            <?php } ?>
-                                        </select>
+                                        <input type="text" name="division" id="division" placeholder=""
+                                            class=" col-xs-10 col-sm-5" value="<?php echo $meResult2['division'];?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -368,21 +398,50 @@ while ($rs = $meQuery->fetch_assoc()){
                                         accept="images/*" value="<?php echo $meResult['img_event'];?>">
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="Waiting" required>
+                                        หน้าร้านสถานะ
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <select name="Waiting" id="Waiting">
+                                            <option value="0"
+                                                <?php if ($meResult2['Waiting'] == '0') {echo 'selected';}?>>
+                                                เลือกสถานะ
+                                            </option>
+                                            <option value="1"
+                                                <?php if ($meResult2['style'] == '1') {echo 'selected';}?>>
+                                                รอ
+                                            </option>
+                                            <option value="2"
+                                                <?php if ($meResult2['Waiting'] == '2') {echo 'selected';}?>>
+                                                รับบริการ
+                                            </option>
+                                            <option value="3"
+                                                <?php if ($meResult2['Waiting'] == '3') {echo 'selected';}?>>
+                                                เสร็จสิ้น
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right" for="status" required> สถานะ
                                     </label>
                                     <div class="col-sm-9">
                                         <select name="status" id="status">
                                             <option value="0"
-                                                <?php if ($meResult2['status'] == '0') {echo 'selected';}?>>รออนุมัติ
+                                                <?php if ($meResult2['status'] == '0') {echo 'selected';}?>>
+                                                รออนุมัติ
                                             </option>
                                             <option value="1"
-                                                <?php if ($meResult2['status'] == '1') {echo 'selected';}?>>อนุมัติ
+                                                <?php if ($meResult2['status'] == '1') {echo 'selected';}?>>
+                                                อนุมัติ
                                             </option>
                                             <option value="2"
-                                                <?php if ($meResult2['status'] == '2') {echo 'selected';}?>>ไม่อนุมัติ
+                                                <?php if ($meResult2['status'] == '2') {echo 'selected';}?>>
+                                                ไม่อนุมัติ
                                             </option>
                                             <option value="3"
-                                                <?php if ($meResult2['status'] == '3') {echo 'selected';}?>>ยกเลิก
+                                                <?php if ($meResult2['status'] == '3') {echo 'selected';}?>>
+                                                ยกเลิก
                                             </option>
                                         </select>
                                     </div>

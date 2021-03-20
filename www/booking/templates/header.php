@@ -118,7 +118,7 @@ $rs = $conn->query( $sql )->fetch_assoc() ;
                     <li class="<?php if ($_GET['page']=='report'){echo 'active';}?>">
                         <a href="index.php?page=report">
                             <i class="ace-icon fa fa-check-square-o"></i>
-                            รายงาน
+                            รายการจองคิว
                         </a>
                     </li>
                     <li

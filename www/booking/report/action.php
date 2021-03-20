@@ -35,10 +35,12 @@ $meSQL .="SET rooms='{$_POST['idrooms']}',"
 . "title='{$_POST['title']}',"
 . "start='{$startdate}',"
 . "end='{$enddate}',"
-. "color='{$meResult['color_rooms']}',"
+. "color='{$meResult['color_rooms']}',"	
+."division='{$_POST['division']}',"
 . "people='{$_POST['people']}',"
 . "equipment='{$equip}',"
 . "etc='{$_POST['etc']}',"
+. "Waiting='{$_POST['Waiting']}',"
 . "status='{$_POST['status']}' ";
 $meSQL .= "WHERE id ='{$_POST['id']}' ";
 
