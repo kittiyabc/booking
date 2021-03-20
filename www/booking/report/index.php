@@ -106,24 +106,28 @@ $rs2 = $conn->query($sql2)->fetch_assoc(); echo $rs2['count3']; ?> คน
 
                                 <div class="mt-3" style="margin-top: 25px;">
                                     <span class="btn btn-yellow">&nbsp;รวมรายได้การจอง
-                                        <?php $sql2 = "SELECT SUM(e.people) sum_incomeAll FROM tb_event e 
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_incomeAll ,SUM(e.division) sum_division FROM tb_event e 
                                         WHERE e.start LIKE '%{$m_d}%' AND e.status=1";
-$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_incomeAll']); ?> บาท
+$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format(intval($rs2['sum_incomeAll'])+intval($rs2['sum_division'])); ?>
+                                        บาท
                                     </span>
 
                                     <span class="btn btn-teal">&nbsp;รายได้บริการทำเล็บ
-                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_1 FROM tb_event e WHERE e.start LIKE '%{$m_d}%' AND e.status=1 AND e.rooms=1";
-$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_income_1']); ?> บาท
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_1 ,SUM(e.division) sum_division FROM tb_event e WHERE e.start LIKE '%{$m_d}%' AND e.status=1 AND e.rooms=1";
+$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format(intval($rs2['sum_income_1'])+intval($rs2['sum_division'])); ?>
+                                        บาท
                                     </span>
 
                                     <span class="btn btn-danger">&nbsp;รายได้บริการต่อขนตา
-                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_2 FROM tb_event e WHERE e.start LIKE '%{$m_d}%' AND e.status=1 AND e.rooms=2";
-$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_income_2']); ?> บาท
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_2 ,SUM(e.division) sum_division FROM tb_event e WHERE e.start LIKE '%{$m_d}%' AND e.status=1 AND e.rooms=2";
+$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format(intval($rs2['sum_income_2'])+intval($rs2['sum_division'])); ?>
+                                        บาท
                                     </span>
 
                                     <span class="btn btn-info">&nbsp;รายได้บริการสักคิ้ว
-                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_3 FROM tb_event e WHERE e.start LIKE '%{$m_d}%' AND e.status=1 AND e.rooms=3";
-$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format($rs2['sum_income_3']); ?> บาท
+                                        <?php $sql2 = "SELECT SUM(e.people) sum_income_3 ,SUM(e.division) sum_division FROM tb_event e WHERE e.start LIKE '%{$m_d}%' AND e.status=1 AND e.rooms=3";
+$rs2 = $conn->query($sql2)->fetch_assoc(); echo number_format(intval($rs2['sum_income_3'])+intval($rs2['sum_division'])); ?>
+                                        บาท
                                     </span>
                                 </div>
 
