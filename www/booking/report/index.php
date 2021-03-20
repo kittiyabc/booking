@@ -79,12 +79,12 @@ if (isset($_POST['substatus']))
                             <div class="form-group">
                                 <form action="./index.php?page=report" method="get">
                                     <div class="form-group">
-                                        <label for="usr">ค้นหาจากเดือน:</label>
+                                        <label for="usr">ค้นหายอดขายจากเดือน:</label>
                                         <input type="month" class="form-control" name="date_sum" value="<?=$m_d?>"
                                             id="usr">
                                         <input type="hidden" class="form-control" name="page" value="report" id="usr">
-                                        <input class="btn btn-sm btn-primary" type="submit"
-                                            name="submit_date" /></input>
+                                        <input class="btn btn-sm btn-primary" type="submit" name="submit_date"
+                                            value="ค้นหา" />
                                     </div>
                                 </form>
                             </div>
