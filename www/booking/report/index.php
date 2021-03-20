@@ -417,7 +417,7 @@ while ($rs = $meQuery->fetch_assoc()){
                                             </option>
                                             <option value="2"
                                                 <?php if ($meResult2['Waiting'] == '2') {echo 'selected';}?>>
-                                                รับบริการ
+                                                ใช้บริการ
                                             </option>
                                             <option value="3"
                                                 <?php if ($meResult2['Waiting'] == '3') {echo 'selected';}?>>
